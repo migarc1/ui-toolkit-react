@@ -2,9 +2,62 @@
  * Copyright (c) Intel Corporation 2019
  * SPDX-License-Identifier: Apache-2.0
  **********************************************************************/
- 
-.header {
-  background-color: darkgray;
+
+ .header {
+  display: flex;
+  align-items: center;
+  background-color: white;
   padding: 5px;
   font-size: 13px;
+}
+
+.header select {
+  height: 32px;
+  padding: 5px;
+  border: 1px solid #CCCCCC;
+  border-radius: 4px;
+  margin: 0 4px;
+}
+// #C81326
+
+.header .connect {
+  background-color: #004A86;
+  color: white;
+  padding: 0 16px;
+  height: 32px;
+}
+
+.header .disconnect {
+  background-color: #004A86;
+  color: white;
+  padding: 0 16px;
+  height: 30px;
+}
+
+.header .button {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 15px;
+  border: 1px solid #CCCCCC;
+  border-radius: 4px;
+  margin: 0 4px;
+}
+.header .button:hover {
+  background-color: #00C7FD;
+}
+
+.header .button > span {
+  margin-right: 5px;
+}
+
+.header .rotate {
+  font-size: 1.4em;
+  font-weight: bolder;
+  color: #00C7FD;
+  height: 30px;
+  padding: 5px;
+  border: 1px solid #CCCCCC;
+  border-radius: 4px;
+  margin: 0 4px;
 }

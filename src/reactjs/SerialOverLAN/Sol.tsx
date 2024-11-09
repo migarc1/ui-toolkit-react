@@ -3,13 +3,13 @@
 * SPDX-License-Identifier: Apache-2.0
 **********************************************************************/
 
-import React from 'react'
-import { AmtTerminal, AMTRedirector, Protocol, TerminalDataProcessor, RedirectorConfig } from '@open-amt-cloud-toolkit/ui-toolkit/core'
-import Style from 'styled-components'
+import { AMTRedirector, AmtTerminal, Protocol, TerminalDataProcessor, type RedirectorConfig } from '@open-amt-cloud-toolkit/ui-toolkit/core'
 import { Terminal } from '@xterm/xterm'
-import Term from './Terminal'
 import '@xterm/xterm/css/xterm.css'
+import React from 'react'
+import Style from 'styled-components'
 import './sol.scss'
+import Term from './Terminal'
 
 const StyledDiv = Style.div`
 display : inline-block;
@@ -27,7 +27,7 @@ export interface SOLProps {
   deviceId: string | null
   mpsServer: string | null
   autoConnect?: boolean
-  authToken: string
+  authToken: string | null
 }
 
 export interface SOLStates {
@@ -69,8 +69,9 @@ export class Sol extends React.Component<SOLProps, SOLStates> {
   }
 
   init = (): void => {
+    debugger
     const server: string = this.props.mpsServer != null ? this.props.mpsServer.replace('http', 'ws') : ''
-    const deviceUuid: string = this.props.deviceId != null ? this.props.deviceId : ''
+    const deviceUuid: string = this.props.deviceId ?? ''
     const config: RedirectorConfig = {
       mode: 'sol',
       protocol: Protocol.SOL,
@@ -81,7 +82,7 @@ export class Sol extends React.Component<SOLProps, SOLStates> {
       pass: '',
       tls: 0,
       tls1only: 0,
-      authToken:  this.props.authToken,
+      authToken: this.props.authToken ?? '',
       server: `${server}/relay`
     }
     this.terminal = new AmtTerminal()
@@ -147,7 +148,7 @@ export class Sol extends React.Component<SOLProps, SOLStates> {
     }
   }
 
-  onTerminalStateChange = (redirector, state: number): void => this.setState({ SOLstate: state })
+  onTerminalStateChange = (redirector, state: number): void => { this.setState({ SOLstate: state }) }
 
   /** callback functions from child components to update the state values */
   handleFeatureStatus = (value): void => {
@@ -168,5 +169,3 @@ export class Sol extends React.Component<SOLProps, SOLStates> {
     )
   }
 }
-
-
