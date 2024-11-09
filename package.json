@@ -15,9 +15,6 @@
     "build-types": "tsc --emitDeclarationOnly -p tsconfig.build.json",
     "postinstall": "npm run build-ext"
   },
-  "files": [
-    "dist"
-  ],
   "author": "",
   "license": "Apache-2.0",
   "bugs": {
