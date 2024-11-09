@@ -6,7 +6,7 @@
   "scripts": {
     "prepublishOnly": "npx mkdirp dist && cp package.json dist",
     "start": "webpack serve --config webpack.config.dev.js",
-    "build": "webpack --config webpack.config.prod.js",
+    "build": "npm run build-types && webpack --config webpack.config.externals.js",
     "build-ext": "npm run build-types && webpack --config webpack.config.externals.js",
     "lint": "eslint . --ext .ts",
     "test": "jest --detectOpenHandles --logHeapUsage --ci --no-cache --runInBand --updateSnapshot",
