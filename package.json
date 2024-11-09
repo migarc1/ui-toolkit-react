@@ -6,13 +6,14 @@
   "scripts": {
     "prepublishOnly": "npx mkdirp dist && cp package.json dist",
     "start": "webpack serve --config webpack.config.dev.js",
-    "build": "npm run build-types && webpack --config webpack.config.externals.js",
+    "build": "webpack --config webpack.config.prod.js",
     "build-ext": "npm run build-types && webpack --config webpack.config.externals.js",
     "lint": "eslint . --ext .ts",
     "test": "jest --detectOpenHandles --logHeapUsage --ci --no-cache --runInBand --updateSnapshot",
     "coverage": "jest --coverage  --detectOpenHandles --logHeapUsage --ci --no-cache --runInBand ",
     "test-kvm": "tsc && node ./dist/test/kvmui.test.ws.js",
-    "build-types": "tsc --emitDeclarationOnly -p tsconfig.build.json"
+    "build-types": "tsc --emitDeclarationOnly -p tsconfig.build.json",
+    "postinstall": "npm run build-ext"
   },
   "author": "",
   "license": "Apache-2.0",
